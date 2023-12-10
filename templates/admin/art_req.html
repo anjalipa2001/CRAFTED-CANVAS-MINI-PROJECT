@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+
+   <!-- Start Blog  -->
+   <div class="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Art Requests</h1>
+                    {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in art %}
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="{{ i.image.url }}" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>{{ i.name }} - {{ i.artist.user.first_name }}</h3>
+                            <p>₹{{ i.price }}</p>
+                            <p>{{ i.description }}</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="ApproveArt?id={{ i.id }}"><i class="fas fa-check"></i></a></li>
+                            <li><a href="RejectArt?id={{ i.id }}"><i class="fas fa-trash"></i></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+<!-- End Blog  -->
+{% endblock %}

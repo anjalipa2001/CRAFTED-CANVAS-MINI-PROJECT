@@ -1,0 +1,58 @@
+{% extends "artist/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+
+<div class="container add-emp">		
+    <center><h1 style="color:black;"><strong>Rent Details</strong></h1><br></center>
+    <table class="table table-bordered table-hover">
+            <tr>			
+                <th class="p-3 mb-2 bg-success text-light">Customer Details</th>
+                <th class="p-3 mb-2 bg-success text-light">Art Details</th>
+                <th class="p-3 mb-2 bg-success text-light">Rent Details</th>
+                <th class="p-3 mb-2 bg-success text-light">Rent Amount</th>
+                <th class="p-3 mb-2 bg-success text-light" Colspan="2" style="text-align:center;">Status</th>
+            </tr> 
+            
+            {% for i in art %}
+            <tr>
+                    <td>Name:{{i.user.user.first_name}}<br>
+                        Email:{{i.user.user.email}}<br>
+                        mobile:{{i.user.phone}}<br></td>
+                    <td><img class="img-fluid" src="{{ i.art.image.url }}" alt="" width="100px" /><br>
+                        {{ i.art.name }}<br>
+                        {{ i.art.category }}</td>
+                        <td>From: {{i.from_date}}<br>
+                            To: {{ i.to_date }}<br>
+                            Delivery Address: {{i.address}}</td>
+                    {% if i.amount %}
+                    <td>{{i.amount}}</td>
+                    {% else %}
+                    <td>Amount not added</td>
+                    {% endif %}
+                    {% if i.status == "approved" %}
+                    <td>Approved <br>
+                    <a href="RentAmount?id={{ i.id }}" class=" btn btn-success">Add Rent Amount</a></td>
+                    {% elif i.status == "rejected" %}
+                    <td>Rejected</td>
+                    {% elif i.status == "paid" %}
+                    <td>Paid</td>
+                    {% else %}
+                    <td><a href="ApproveRent?id={{ i.id }}" class=" btn btn-success">Approve</a></td>
+                    <td><a href="RejectRent?id={{ i.id}}" class=" btn btn-danger">Reject</a></td>
+
+                    {% endif %}
+                   
+            </tr>  
+            {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

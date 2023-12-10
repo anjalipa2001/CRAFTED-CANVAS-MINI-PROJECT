@@ -1,0 +1,52 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+  <!-- Start Blog  -->
+  <div class="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>latest events</h1>
+                    {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for x in eve %}
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="{{ x.image.url }}" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>{{ x.name }} by {{ x.artist.user.first_name }}</h3>
+                            <p>{{ x.place }}</p>
+                            <p>{{ x.time }}</p>
+                            <p>{{ x.date }}</p>
+                            <p>{{ x.description }}</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
+                            {% comment %} <li><a href="#"><i class="far fa-comments"></i></a></li> {% endcomment %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- End Blog  -->
+
+{% endblock %}

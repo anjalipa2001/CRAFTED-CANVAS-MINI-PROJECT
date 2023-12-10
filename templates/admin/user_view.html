@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+
+<div class="container add-emp">		
+    <center><h1 style="color:black;"><strong>Customer Details</strong></h1><br></center>
+    <table class="table table-bordered table-hover">
+            <tr>			
+                <th class="p-3 mb-2 bg-success text-light">User Name </th>
+                <th class="p-3 mb-2 bg-success text-light">Email</th>
+                <th class="p-3 mb-2 bg-success text-light">Phone Number</th>
+                <th class="p-3 mb-2 bg-success text-light">Address</th>
+                {% comment %} <th class="p-3 mb-2 bg-primary text-light">Approve</th>
+                <th class="p-3 mb-2 bg-primary text-light">Delete</th> {% endcomment %}
+            </tr> 
+            
+            {% for i in doc %}
+            <tr>
+                    <td>{{i.user.first_name}}</td>
+                    <td>{{i.user.email}}</td>
+                    <td>{{i.phone}}</td>
+                    
+                    <td><a href="Reject?id={{ i.user_id }}" class=" btn btn-danger">Remove</a></td>
+                    {% comment %} <td><a href="reject?id={{ i.user_id}}" class=" btn btn-danger">Reject</a></td> {% endcomment %}
+
+            </tr>  
+            {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

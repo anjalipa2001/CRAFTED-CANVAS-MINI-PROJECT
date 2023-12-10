@@ -1,0 +1,29 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+
+  <!-- Start Categories  -->
+  <div class="categories-shop">
+    <div class="container">
+        <div class="row">
+            {% for i in art %}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="{{ i.image.url }}" alt="" />
+                    <a class="btn hvr-hover" href="ArtDetails?id={{ i.id }}">{{ i.name }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- End Categories -->
+
+{% endblock %}

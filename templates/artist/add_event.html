@@ -1,0 +1,77 @@
+{% extends "artist/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+ <!-- Start Contact Us  -->
+ <div class="contact-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div class="contact-form-right">
+                    <h2>Add Event</h2>
+                    <p>Note: To host an Event you need to be a Premium Member.</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="place" placeholder="Event location" required data-error="Please enter event location">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                          
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="name" name="description" placeholder="Description" required data-error="Please enter your description"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" id="name" name="date" placeholder="Date" required data-error="Please enter date">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="time" class="form-control" id="name" name="time" placeholder="Date" required data-error="Please enter time">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="file" placeholder="Image" id="email" class="form-control" name="image" required data-error="Please add a Image">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                
+                                <div class="submit-button text-center">
+                                    <button class="btn hvr-hover" id="submit" type="submit">Register</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Cart -->
+{% endblock %}

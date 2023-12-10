@@ -1,0 +1,55 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+<!-- Start Shop Detail  -->
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div class="row">
+            {% for i in art %}
+            <div class="col-xl-5 col-lg-5 col-md-6">
+                <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active"> <img class="d-block w-100" src="{{ i.image.url }}" alt="First slide"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6">
+                <div class="single-product-details">
+                    <h2>{{ i.name }} - {{ i.artist.user.first_name }}</h2>
+                    <h5>₹{{ i.price }}</h5>
+                    <h4>Short Description:</h4>
+                    <p>{{ i.description }}</p>
+                    
+
+                    <div class="price-box-bar">
+                        <div class="cart-and-bay-btn">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <button class="btn hvr-hover" style="color:white" data-fancybox-close="" type="sumbit">add to cart</button>
+                            <a class="btn hvr-hover" data-fancybox-close="" href="RentArt?id={{ i.id }}">Request for Rent</a>
+                        </form>
+                            
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+
+        
+    </div>
+</div>
+<!-- End Cart -->
+
+{% endblock %}
